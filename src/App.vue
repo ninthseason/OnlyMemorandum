@@ -24,8 +24,15 @@ export default {
   },
   data() {
     return {
-      todos:[
-      ]
+      todos: JSON.parse(localStorage.getItem("temp")) || []
+    }
+  },
+  watch: {
+    todos: {
+      deep: true,
+      handler(){
+        localStorage.setItem("temp", JSON.stringify(this.todos));
+      }
     }
   },
   methods: {
